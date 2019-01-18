@@ -1,0 +1,36 @@
+{
+  "name": "michaelhall/http-client",
+  "description": "A simple HTTP client",
+  "license": "MIT",
+  "type": "library",
+  "keywords": [
+    "http",
+    "client"
+  ],
+  "authors": [
+    {
+      "name": "Michael Hall",
+      "homepage": "https://michaelhall.se/"
+    }
+  ],
+  "require": {
+    "php": ">=7.1",
+    "ext-curl": "*",
+    "ext-fileinfo": "*",
+    "datatypes/datatypes": "^2.0"
+  },
+  "require-dev": {
+    "ext-json": "*",
+    "phpunit/phpunit": "^7.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "MichaelHall\\HttpClient\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "MichaelHall\\HttpClient\\Tests\\": "tests"
+    }
+  }
+}
