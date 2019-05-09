@@ -37,6 +37,15 @@ interface HttpClientRequestInterface
     public function getCACertificate(): ?FilePathInterface;
 
     /**
+     * Returns the client certificate path or null if not set.
+     *
+     * @since 1.1.0
+     *
+     * @return FilePathInterface|null The client certificate path or null if not set.
+     */
+    public function getClientCertificate(): ?FilePathInterface;
+
+    /**
      * Returns the files to upload.
      *
      * @since 1.0.0
@@ -98,6 +107,15 @@ interface HttpClientRequestInterface
      * @param FilePathInterface $caCertificate The certificate authority (CA) certificate path.
      */
     public function setCACertificate(FilePathInterface $caCertificate): void;
+
+    /**
+     * Sets the client certificate path.
+     *
+     * @since 1.1.0
+     *
+     * @param FilePathInterface $clientCertificate The client certificate path.
+     */
+    public function setClientCertificate(FilePathInterface $clientCertificate): void;
 
     /**
      * Sets a file to upload.
