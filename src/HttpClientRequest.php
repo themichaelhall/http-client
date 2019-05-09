@@ -34,6 +34,7 @@ class HttpClientRequest implements HttpClientRequestInterface
         $this->postFields = [];
         $this->files = [];
         $this->rawContent = '';
+        $this->caCertificate = null;
     }
 
     /**
@@ -46,6 +47,18 @@ class HttpClientRequest implements HttpClientRequestInterface
     public function addHeader(string $header): void
     {
         $this->headers[] = $header;
+    }
+
+    /**
+     * Returns the certificate authority (CA) certificate path or null if not set.
+     *
+     * @since 1.1.0
+     *
+     * @return FilePathInterface|null The certificate authority (CA) certificate path or null if not set.
+     */
+    public function getCACertificate(): ?FilePathInterface
+    {
+        return $this->caCertificate;
     }
 
     /**
@@ -121,6 +134,18 @@ class HttpClientRequest implements HttpClientRequestInterface
     }
 
     /**
+     * Sets the certificate authority (CA) certificate path.
+     *
+     * @since 1.1.0
+     *
+     * @param FilePathInterface $caCertificate The certificate authority (CA) certificate path.
+     */
+    public function setCACertificate(FilePathInterface $caCertificate): void
+    {
+        $this->caCertificate = $caCertificate;
+    }
+
+    /**
      * Sets a file to upload.
      *
      * @since 1.0.0
@@ -191,4 +216,9 @@ class HttpClientRequest implements HttpClientRequestInterface
      * @var string My raw content.
      */
     private $rawContent;
+
+    /**
+     * @var FilePathInterface|null My CA certificate path.
+     */
+    private $caCertificate;
 }

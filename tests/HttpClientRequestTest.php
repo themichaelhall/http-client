@@ -122,4 +122,25 @@ class HttpClientRequestTest extends TestCase
 
         self::assertSame('Baz', $request->getRawContent());
     }
+
+    /**
+     * Test getCACertificate method.
+     */
+    public function testGetCACertificate()
+    {
+        $request = new HttpClientRequest(Url::parse('https://example.com/foo/bar'));
+
+        self::assertNull($request->getCACertificate());
+    }
+
+    /**
+     * Test setCACertificate method.
+     */
+    public function testSetCACertificate()
+    {
+        $request = new HttpClientRequest(Url::parse('https://example.com/foo/bar'));
+        $request->setCACertificate(FilePath::parse('/foo.pem'));
+
+        self::assertSame('/foo.pem', $request->getCACertificate()->__toString());
+    }
 }
