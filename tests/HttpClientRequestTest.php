@@ -164,4 +164,25 @@ class HttpClientRequestTest extends TestCase
 
         self::assertSame(DIRECTORY_SEPARATOR . 'bar.pem', $request->getClientCertificate()->__toString());
     }
+
+    /**
+     * Test getClientKey method.
+     */
+    public function testGetClientKey()
+    {
+        $request = new HttpClientRequest(Url::parse('https://example.com/foo/bar'));
+
+        self::assertNull($request->getClientKey());
+    }
+
+    /**
+     * Test setClientKey method.
+     */
+    public function testSetClientKey()
+    {
+        $request = new HttpClientRequest(Url::parse('https://example.com/foo/bar'));
+        $request->setClientKey(FilePath::parse('/baz.pem'));
+
+        self::assertSame(DIRECTORY_SEPARATOR . 'baz.pem', $request->getClientKey()->__toString());
+    }
 }
