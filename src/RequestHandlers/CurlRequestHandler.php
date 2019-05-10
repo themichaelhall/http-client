@@ -98,11 +98,21 @@ class CurlRequestHandler implements RequestHandlerInterface
             $postFields[$name] = $value;
         }
 
-        if (count($postFields) === 0) {
-            return;
+        if (count($postFields) !== 0) {
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $hasFiles ? $postFields : http_build_query($postFields));
         }
 
-        curl_setopt($curl, CURLOPT_POSTFIELDS, $hasFiles ? $postFields : http_build_query($postFields));
+        if ($request->getCACertificate() !== null) {
+            curl_setopt($curl, CURLOPT_CAINFO, $request->getCACertificate()->__toString());
+        }
+
+        if ($request->getClientCertificate() !== null) {
+            curl_setopt($curl, CURLOPT_SSLCERT, $request->getClientCertificate()->__toString());
+        }
+
+        if ($request->getClientKey() !== null) {
+            curl_setopt($curl, CURLOPT_SSLKEY, $request->getClientKey()->__toString());
+        }
     }
 
     /**

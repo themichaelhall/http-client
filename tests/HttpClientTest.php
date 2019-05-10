@@ -148,4 +148,22 @@ class HttpClientTest extends TestCase
         self::assertSame(['Foo' => 'Bar'], $jsonContent['cookies']);
         self::assertTrue($response->isSuccessful());
     }
+
+    /**
+     * Test fetching a page using client certificates.
+     */
+    public function testWithClientCertificates()
+    {
+        $client = new HttpClient();
+        $request = new HttpClientRequest(Url::parse('https://httpbin.org/anything'));
+        $request->setCACertificate(FilePath::parse(__DIR__ . '/TestFiles/cacert.pem'));
+        $request->setClientCertificate(FilePath::parse(__DIR__ . '/TestFiles/cert.pem'));
+        $request->setClientKey(FilePath::parse(__DIR__ . '/TestFiles/key.pem'));
+        $response = $client->send($request);
+        $jsonContent = json_decode($response->getContent(), true);
+
+        self::assertSame(200, $response->getHttpCode());
+        self::assertSame('GET', $jsonContent['method']);
+        self::assertTrue($response->isSuccessful());
+    }
 }

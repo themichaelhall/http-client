@@ -28,6 +28,33 @@ interface HttpClientRequestInterface
     public function addHeader(string $header): void;
 
     /**
+     * Returns the certificate authority (CA) certificate path or null if not set.
+     *
+     * @since 1.1.0
+     *
+     * @return FilePathInterface|null The certificate authority (CA) certificate path or null if not set.
+     */
+    public function getCACertificate(): ?FilePathInterface;
+
+    /**
+     * Returns the client certificate path or null if not set.
+     *
+     * @since 1.1.0
+     *
+     * @return FilePathInterface|null The client certificate path or null if not set.
+     */
+    public function getClientCertificate(): ?FilePathInterface;
+
+    /**
+     * Returns the client key path or null if not set.
+     *
+     * @since 1.1.0
+     *
+     * @return FilePathInterface|null The client key path or null if not set.
+     */
+    public function getClientKey(): ?FilePathInterface;
+
+    /**
      * Returns the files to upload.
      *
      * @since 1.0.0
@@ -80,6 +107,33 @@ interface HttpClientRequestInterface
      * @return UrlInterface The url.
      */
     public function getUrl(): UrlInterface;
+
+    /**
+     * Sets the certificate authority (CA) certificate path.
+     *
+     * @since 1.1.0
+     *
+     * @param FilePathInterface $caCertificate The certificate authority (CA) certificate path.
+     */
+    public function setCACertificate(FilePathInterface $caCertificate): void;
+
+    /**
+     * Sets the client certificate path.
+     *
+     * @since 1.1.0
+     *
+     * @param FilePathInterface $clientCertificate The client certificate path.
+     */
+    public function setClientCertificate(FilePathInterface $clientCertificate): void;
+
+    /**
+     * Sets the client key path.
+     *
+     * @since 1.1.0
+     *
+     * @param FilePathInterface $clientKey The client key path.
+     */
+    public function setClientKey(FilePathInterface $clientKey): void;
 
     /**
      * Sets a file to upload.

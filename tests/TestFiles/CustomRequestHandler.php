@@ -89,6 +89,19 @@ class CustomRequestHandler implements RequestHandlerInterface
             $responseContent['headers']['Content-Type'] = 'application/x-www-form-urlencoded';
         }
 
+        // Other.
+        if ($request->getCACertificate() !== null) {
+            $responseContent['other']['CACertificate'] = $request->getCACertificate()->__toString();
+        }
+
+        if ($request->getClientCertificate() !== null) {
+            $responseContent['other']['ClientCertificate'] = $request->getClientCertificate()->__toString();
+        }
+
+        if ($request->getClientKey() !== null) {
+            $responseContent['other']['ClientKey'] = $request->getClientKey()->__toString();
+        }
+
         // Create response.
         if ($responseCode === 404) {
             return new HttpClientResponse($responseCode);

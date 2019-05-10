@@ -80,6 +80,11 @@ $request->addHeader('Content-type: application/json');
 
 // Set raw content.
 $request->setRawContent('{"Foo": "Bar"}');
+
+// Client certificates.
+$request->setCACertificate(FilePath::parse('/path/to/ca-certificate.pem'));
+$request->setClientCertificate(FilePath::parse('/path/to/client-certificate.pem'));
+$request->setClientKey(FilePath::parse('/path/to/client-key.pem'));
 ```
 
 ### Create a custom request handler
