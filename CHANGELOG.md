@@ -1,3 +1,5 @@
+## Unreleased
+
 ## [1.1.0] - 2019-05-20
 - Added getCACertificate and setCACertificate methods to HttpClientRequest.
 - Added getClientCertificate and setClientCertificate methods to HttpClientRequest.
