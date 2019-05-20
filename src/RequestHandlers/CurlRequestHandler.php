@@ -55,7 +55,8 @@ class CurlRequestHandler implements RequestHandlerInterface
         curl_setopt($curl, CURLOPT_COOKIEJAR, $this->cookieFile);
         curl_setopt($curl, CURLOPT_COOKIEFILE, $this->cookieFile);
 
-        $this->setCurlContent($curl, $request);
+        $this->setPostFields($curl, $request);
+        $this->setCertificates($curl, $request);
 
         $result = curl_exec($curl);
         if ($result === false) {
@@ -70,12 +71,12 @@ class CurlRequestHandler implements RequestHandlerInterface
     }
 
     /**
-     * Sets the Curl content from request.
+     * Sets the POST fields from request.
      *
      * @param resource                   $curl    The CURL instance.
      * @param HttpClientRequestInterface $request The request.
      */
-    private function setCurlContent($curl, HttpClientRequestInterface $request): void
+    private function setPostFields($curl, HttpClientRequestInterface $request): void
     {
         $rawContent = $request->getRawContent();
         if ($rawContent !== '') {
@@ -101,7 +102,16 @@ class CurlRequestHandler implements RequestHandlerInterface
         if (count($postFields) !== 0) {
             curl_setopt($curl, CURLOPT_POSTFIELDS, $hasFiles ? $postFields : http_build_query($postFields));
         }
+    }
 
+    /**
+     * Sets the certificates from request.
+     *
+     * @param resource                   $curl    The CURL instance.
+     * @param HttpClientRequestInterface $request The request.
+     */
+    private function setCertificates($curl, HttpClientRequestInterface $request): void
+    {
         if ($request->getCACertificate() !== null) {
             curl_setopt($curl, CURLOPT_CAINFO, $request->getCACertificate()->__toString());
         }
