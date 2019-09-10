@@ -54,6 +54,7 @@ class CurlRequestHandler implements RequestHandlerInterface
         curl_setopt($curl, CURLOPT_HTTPHEADER, $request->getHeaders());
         curl_setopt($curl, CURLOPT_COOKIEJAR, $this->cookieFile);
         curl_setopt($curl, CURLOPT_COOKIEFILE, $this->cookieFile);
+        curl_setopt($curl, CURLOPT_ENCODING, '');
 
         $this->setPostFields($curl, $request);
         $this->setCertificates($curl, $request);

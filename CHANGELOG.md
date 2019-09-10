@@ -1,4 +1,5 @@
 ## Unreleased
+- Added CURLOPT_ENCODING to use all supported encoding types in CurlRequestHandler.
 
 ## [1.1.0] - 2019-05-20
 - Added getCACertificate and setCACertificate methods to HttpClientRequest.
