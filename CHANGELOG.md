@@ -1,3 +1,5 @@
+## Unreleased
+
 ## [1.2.0] - 2019-09-10
 - Added CURLOPT_ENCODING to use all supported encoding types in CurlRequestHandler.
 
