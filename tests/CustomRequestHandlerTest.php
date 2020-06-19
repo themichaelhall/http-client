@@ -159,6 +159,7 @@ class CustomRequestHandlerTest extends TestCase
         $request = new HttpClientRequest(Url::parse('https://httpbin.org/anything'));
         $request->setCACertificate(FilePath::parse(__DIR__ . '/TestFiles/cacert.pem'));
         $request->setClientCertificate(FilePath::parse(__DIR__ . '/TestFiles/cert.pem'));
+        $request->setClientCertificateType('PEM');
         $request->setClientKey(FilePath::parse(__DIR__ . '/TestFiles/key.pem'));
         $response = $client->send($request);
         $jsonContent = json_decode($response->getContent(), true);
@@ -167,6 +168,7 @@ class CustomRequestHandlerTest extends TestCase
         self::assertSame('GET', $jsonContent['method']);
         self::assertSame(__DIR__ . DIRECTORY_SEPARATOR . 'TestFiles' . DIRECTORY_SEPARATOR . 'cacert.pem', $jsonContent['other']['CACertificate']);
         self::assertSame(__DIR__ . DIRECTORY_SEPARATOR . 'TestFiles' . DIRECTORY_SEPARATOR . 'cert.pem', $jsonContent['other']['ClientCertificate']);
+        self::assertSame('PEM', $jsonContent['other']['ClientCertificateType']);
         self::assertSame(__DIR__ . DIRECTORY_SEPARATOR . 'TestFiles' . DIRECTORY_SEPARATOR . 'key.pem', $jsonContent['other']['ClientKey']);
         self::assertTrue($response->isSuccessful());
     }

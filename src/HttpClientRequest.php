@@ -36,6 +36,7 @@ class HttpClientRequest implements HttpClientRequestInterface
         $this->rawContent = '';
         $this->caCertificate = null;
         $this->clientCertificate = null;
+        $this->clientCertificateType = null;
         $this->clientKey = null;
     }
 
@@ -73,6 +74,18 @@ class HttpClientRequest implements HttpClientRequestInterface
     public function getClientCertificate(): ?FilePathInterface
     {
         return $this->clientCertificate;
+    }
+
+    /**
+     * Returns the client certificate type or null if not set.
+     *
+     * @since 1.3.0
+     *
+     * @return string|null
+     */
+    public function getClientCertificateType(): ?string
+    {
+        return $this->clientCertificateType;
     }
 
     /**
@@ -184,6 +197,18 @@ class HttpClientRequest implements HttpClientRequestInterface
     }
 
     /**
+     * Sets the client certificate type.
+     *
+     * @since 1.3.0
+     *
+     * @param string $clientCertificateType
+     */
+    public function setClientCertificateType(string $clientCertificateType): void
+    {
+        $this->clientCertificateType = $clientCertificateType;
+    }
+
+    /**
      * Sets the client key path.
      *
      * @since 1.1.0
@@ -276,6 +301,11 @@ class HttpClientRequest implements HttpClientRequestInterface
      * @var FilePathInterface|null My client certificate path.
      */
     private $clientCertificate;
+
+    /**
+     * @var string|null My client certificate type.
+     */
+    private $clientCertificateType;
 
     /**
      * @var FilePathInterface|null My client key.

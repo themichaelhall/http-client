@@ -158,6 +158,7 @@ class HttpClientTest extends TestCase
         $request = new HttpClientRequest(Url::parse('https://httpbin.org/anything'));
         $request->setCACertificate(FilePath::parse(__DIR__ . '/TestFiles/cacert.pem'));
         $request->setClientCertificate(FilePath::parse(__DIR__ . '/TestFiles/cert.pem'));
+        $request->setClientCertificateType('PEM');
         $request->setClientKey(FilePath::parse(__DIR__ . '/TestFiles/key.pem'));
         $response = $client->send($request);
         $jsonContent = json_decode($response->getContent(), true);

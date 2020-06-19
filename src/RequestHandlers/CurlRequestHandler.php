@@ -121,6 +121,10 @@ class CurlRequestHandler implements RequestHandlerInterface
             curl_setopt($curl, CURLOPT_SSLCERT, $request->getClientCertificate()->__toString());
         }
 
+        if ($request->getClientCertificateType() !== null) {
+            curl_setopt($curl, CURLOPT_SSLCERTTYPE, $request->getClientCertificateType());
+        }
+
         if ($request->getClientKey() !== null) {
             curl_setopt($curl, CURLOPT_SSLKEY, $request->getClientKey()->__toString());
         }
