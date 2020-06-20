@@ -1,4 +1,6 @@
 ## Unreleased
+- Added getClientCertificateType and setClientCertificateType methods to HttpClientRequest.
+- Added getClientCertificatePassword and setClientCertificatePassword methods to HttpClientRequest.
 
 ## [1.2.0] - 2019-09-10
 - Added CURLOPT_ENCODING to use all supported encoding types in CurlRequestHandler.

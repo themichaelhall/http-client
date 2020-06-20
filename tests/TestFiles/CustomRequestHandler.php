@@ -98,6 +98,14 @@ class CustomRequestHandler implements RequestHandlerInterface
             $responseContent['other']['ClientCertificate'] = $request->getClientCertificate()->__toString();
         }
 
+        if ($request->getClientCertificatePassword() !== null) {
+            $responseContent['other']['ClientCertificatePassword'] = $request->getClientCertificatePassword();
+        }
+
+        if ($request->getClientCertificateType() !== null) {
+            $responseContent['other']['ClientCertificateType'] = $request->getClientCertificateType();
+        }
+
         if ($request->getClientKey() !== null) {
             $responseContent['other']['ClientKey'] = $request->getClientKey()->__toString();
         }

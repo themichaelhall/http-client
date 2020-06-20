@@ -46,6 +46,24 @@ interface HttpClientRequestInterface
     public function getClientCertificate(): ?FilePathInterface;
 
     /**
+     * Returns the client certificate password or null if not set.
+     *
+     * @since 1.3.0
+     *
+     * @return string|null The client certificate password or null if not set.
+     */
+    public function getClientCertificatePassword(): ?string;
+
+    /**
+     * Returns the client certificate type or null if not set.
+     *
+     * @since 1.3.0
+     *
+     * @return string|null
+     */
+    public function getClientCertificateType(): ?string;
+
+    /**
      * Returns the client key path or null if not set.
      *
      * @since 1.1.0
@@ -125,6 +143,24 @@ interface HttpClientRequestInterface
      * @param FilePathInterface $clientCertificate The client certificate path.
      */
     public function setClientCertificate(FilePathInterface $clientCertificate): void;
+
+    /**
+     * Sets the client certificate password.
+     *
+     * @since 1.3.0
+     *
+     * @param string $clientCertificatePassword The client certificate password.
+     */
+    public function setClientCertificatePassword(string $clientCertificatePassword): void;
+
+    /**
+     * Sets the client certificate type.
+     *
+     * @since 1.3.0
+     *
+     * @param string $clientCertificateType
+     */
+    public function setClientCertificateType(string $clientCertificateType): void;
 
     /**
      * Sets the client key path.

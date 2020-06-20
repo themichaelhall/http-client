@@ -166,6 +166,48 @@ class HttpClientRequestTest extends TestCase
     }
 
     /**
+     * Test getClientCertificatePassword method.
+     */
+    public function testGetClientCertificatePassword()
+    {
+        $request = new HttpClientRequest(Url::parse('https://example.com/foo/bar'));
+
+        self::assertNull($request->getClientCertificatePassword());
+    }
+
+    /**
+     * Test setClientCertificatePassword method.
+     */
+    public function testSetClientCertificatePassword()
+    {
+        $request = new HttpClientRequest(Url::parse('https://example.com/foo/bar'));
+        $request->setClientCertificatePassword('FooBar');
+
+        self::assertSame('FooBar', $request->getClientCertificatePassword());
+    }
+
+    /**
+     * Test getClientCertificateType method.
+     */
+    public function testGetClientCertificateType()
+    {
+        $request = new HttpClientRequest(Url::parse('https://example.com/foo/bar'));
+
+        self::assertNull($request->getClientCertificateType());
+    }
+
+    /**
+     * Test setClientCertificateType method.
+     */
+    public function testSetClientCertificateType()
+    {
+        $request = new HttpClientRequest(Url::parse('https://example.com/foo/bar'));
+        $request->setClientCertificateType('P12');
+
+        self::assertSame('P12', $request->getClientCertificateType());
+    }
+
+    /**
      * Test getClientKey method.
      */
     public function testGetClientKey()
