@@ -1,4 +1,4 @@
-## Unreleased
+## [1.3.0] - 2020-06-22
 - Added getClientCertificateType and setClientCertificateType methods to HttpClientRequest.
 - Added getClientCertificatePassword and setClientCertificatePassword methods to HttpClientRequest.
 
@@ -13,5 +13,6 @@
 ## 1.0.0 - 2019-01-24
 - First stable revision.
 
+[1.3.0]: https://github.com/themichaelhall/http-client/compare/v1.2.0...v1.3.0
 [1.2.0]: https://github.com/themichaelhall/http-client/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/themichaelhall/http-client/compare/v1.0.0...v1.1.0
