@@ -1,3 +1,5 @@
+## Unreleased
+
 ## [1.3.0] - 2020-06-22
 - Added getClientCertificateType and setClientCertificateType methods to HttpClientRequest.
 - Added getClientCertificatePassword and setClientCertificatePassword methods to HttpClientRequest.
