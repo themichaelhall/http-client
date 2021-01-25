@@ -9,6 +9,7 @@ use DataTypes\FilePath;
 use DataTypes\Url;
 use MichaelHall\HttpClient\HttpClient;
 use MichaelHall\HttpClient\HttpClientRequest;
+use MichaelHall\HttpClient\RequestHandlers\CurlRequestHandler;
 use MichaelHall\HttpClient\Tests\Helpers\Fakes\FakeCurl;
 use PHPUnit\Framework\TestCase;
 
@@ -220,6 +221,31 @@ class HttpClientTest extends TestCase
         self::assertSame('FooBar', FakeCurl::getOption(CURLOPT_SSLCERTPASSWD));
         self::assertSame('PEM', FakeCurl::getOption(CURLOPT_SSLCERTTYPE));
         self::assertSame(FilePath::parse(__DIR__ . '/TestFiles/key.pem')->__toString(), FakeCurl::getOption(CURLOPT_SSLKEY));
+    }
+
+    /**
+     * Test fetching a page with overridden curl options.
+     */
+    public function testWithOverriddenCurlOptions()
+    {
+        $curlRequestHandler = new CurlRequestHandler();
+        $curlRequestHandler->setOption(CURLOPT_TIMEOUT, 123);
+
+        $client = new HttpClient($curlRequestHandler);
+        $request = new HttpClientRequest(Url::parse('https://example.com/'));
+        $request->addHeader('X-Test-Header: Foo Bar');
+        $response = $client->send($request);
+
+        self::assertSame(200, $response->getHttpCode());
+        self::assertTrue($response->isSuccessful());
+        self::assertSame([], $response->getHeaders());
+        self::assertSame('Hello World!', $response->getContent());
+
+        self::assertSame('https://example.com/', FakeCurl::getOption(CURLOPT_URL));
+        self::assertSame('GET', FakeCurl::getOption(CURLOPT_CUSTOMREQUEST));
+        self::assertSame(['X-Test-Header: Foo Bar'], FakeCurl::getOption(CURLOPT_HTTPHEADER));
+        self::assertNull(FakeCurl::getOption(CURLOPT_POSTFIELDS));
+        self::assertSame(123, FakeCurl::getOption(CURLOPT_TIMEOUT));
     }
 
     /**
