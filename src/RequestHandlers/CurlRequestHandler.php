@@ -83,6 +83,11 @@ class CurlRequestHandler implements RequestHandlerInterface
      */
     public function setOption(int $option, $value): void
     {
+        $unsafeOption = self::UNSAFE_CURL_OPTIONS_OVERRIDE[$option] ?? null;
+        if ($unsafeOption !== null) {
+            trigger_error('Option "' . $unsafeOption . '" is used internally by CurlRequestHandler. Setting it manually may lead to unexpected results.', E_USER_WARNING);
+        }
+
         $this->options[$option] = $value;
     }
 
@@ -214,4 +219,23 @@ class CurlRequestHandler implements RequestHandlerInterface
      * @var array My Curl options for the request.
      */
     private $options;
+
+    /**
+     * @var array Curl options that is used internally and should not be overridden without a warning.
+     */
+    private const UNSAFE_CURL_OPTIONS_OVERRIDE = [
+        CURLOPT_CAINFO         => 'CURLOPT_CAINFO',
+        CURLOPT_COOKIEFILE     => 'CURLOPT_COOKIEFILE',
+        CURLOPT_COOKIEJAR      => 'CURLOPT_COOKIEJAR',
+        CURLOPT_CUSTOMREQUEST  => 'CURLOPT_CUSTOMREQUEST',
+        CURLOPT_HEADER         => 'CURLOPT_HEADER',
+        CURLOPT_HTTPHEADER     => 'CURLOPT_HTTPHEADER',
+        CURLOPT_POSTFIELDS     => 'CURLOPT_POSTFIELDS',
+        CURLOPT_RETURNTRANSFER => 'CURLOPT_RETURNTRANSFER',
+        CURLOPT_SSLCERT        => 'CURLOPT_SSLCERT',
+        CURLOPT_SSLCERTPASSWD  => 'CURLOPT_SSLCERTPASSWD',
+        CURLOPT_SSLCERTTYPE    => 'CURLOPT_SSLCERTTYPE',
+        CURLOPT_SSLKEY         => 'CURLOPT_SSLKEY',
+        CURLOPT_URL            => 'CURLOPT_URL',
+    ];
 }

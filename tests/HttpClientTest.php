@@ -249,6 +249,41 @@ class HttpClientTest extends TestCase
     }
 
     /**
+     * Test fetching a page with a curl option that is unsafe to override.
+     */
+    public function testWithUnsafeOverriddenCurlOption()
+    {
+        self::expectWarning();
+        self::expectWarningMessage('Option "CURLOPT_URL" is used internally by CurlRequestHandler. Setting it manually may lead to unexpected results.');
+
+        $curlRequestHandler = new CurlRequestHandler();
+        $curlRequestHandler->setOption(CURLOPT_URL, 'http://foobar.com/');
+    }
+
+    /**
+     * Test fetching a page with a curl option that is unsafe to override with warning suppressed.
+     */
+    public function testWithUnsafeOverriddenCurlOptionWithWarningSuppressed()
+    {
+        $curlRequestHandler = new CurlRequestHandler();
+        @$curlRequestHandler->setOption(CURLOPT_URL, 'http://foobar.com/');
+
+        $client = new HttpClient($curlRequestHandler);
+        $request = new HttpClientRequest(Url::parse('https://example.com/'));
+        $response = $client->send($request);
+
+        self::assertSame(0, $response->getHttpCode());
+        self::assertFalse($response->isSuccessful());
+        self::assertSame([], $response->getHeaders());
+        self::assertSame('Failed to connect to foobar.com: Connection refused', $response->getContent());
+
+        self::assertSame('http://foobar.com/', FakeCurl::getOption(CURLOPT_URL));
+        self::assertSame('GET', FakeCurl::getOption(CURLOPT_CUSTOMREQUEST));
+        self::assertSame([], FakeCurl::getOption(CURLOPT_HTTPHEADER));
+        self::assertNull(FakeCurl::getOption(CURLOPT_POSTFIELDS));
+    }
+
+    /**
      * Set up.
      */
     protected function setUp(): void
