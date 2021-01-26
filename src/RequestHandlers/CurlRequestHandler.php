@@ -28,6 +28,7 @@ class CurlRequestHandler implements RequestHandlerInterface
     public function __construct()
     {
         $this->cookieFile = tempnam(sys_get_temp_dir(), 'http-client-cookies-');
+        $this->options = [];
     }
 
     /**
@@ -58,6 +59,7 @@ class CurlRequestHandler implements RequestHandlerInterface
 
         $this->setPostFields($curl, $request);
         $this->setCertificates($curl, $request);
+        $this->setOptions($curl);
 
         $result = curl_exec($curl);
         if ($result === false) {
@@ -69,6 +71,24 @@ class CurlRequestHandler implements RequestHandlerInterface
         curl_close($curl);
 
         return $this->parseResult($result);
+    }
+
+    /**
+     * Sets a Curl option for the request.
+     *
+     * @since 1.4.0
+     *
+     * @param int   $option The CURLOPT_XXX option.
+     * @param mixed $value  The option value.
+     */
+    public function setOption(int $option, $value): void
+    {
+        $unsafeOption = self::UNSAFE_CURL_OPTIONS_OVERRIDE[$option] ?? null;
+        if ($unsafeOption !== null) {
+            trigger_error('Option "' . $unsafeOption . '" is used internally by CurlRequestHandler. Setting it manually may lead to unexpected results.', E_USER_WARNING);
+        }
+
+        $this->options[$option] = $value;
     }
 
     /**
@@ -108,7 +128,7 @@ class CurlRequestHandler implements RequestHandlerInterface
     /**
      * Sets the certificates from request.
      *
-     * @param resource                   $curl    The CURL instance.
+     * @param resource                   $curl    The Curl instance.
      * @param HttpClientRequestInterface $request The request.
      */
     private function setCertificates($curl, HttpClientRequestInterface $request): void
@@ -131,6 +151,18 @@ class CurlRequestHandler implements RequestHandlerInterface
 
         if ($request->getClientKey() !== null) {
             curl_setopt($curl, CURLOPT_SSLKEY, $request->getClientKey()->__toString());
+        }
+    }
+
+    /**
+     * Sets the options for the request.
+     *
+     * @param resource $curl The Curl instance.
+     */
+    private function setOptions($curl): void
+    {
+        foreach ($this->options as $optionName => $optionValue) {
+            curl_setopt($curl, $optionName, $optionValue);
         }
     }
 
@@ -182,4 +214,28 @@ class CurlRequestHandler implements RequestHandlerInterface
      * @var string My cookie file.
      */
     private $cookieFile;
+
+    /**
+     * @var array My Curl options for the request.
+     */
+    private $options;
+
+    /**
+     * @var array Curl options that is used internally and should not be overridden without a warning.
+     */
+    private const UNSAFE_CURL_OPTIONS_OVERRIDE = [
+        CURLOPT_CAINFO         => 'CURLOPT_CAINFO',
+        CURLOPT_COOKIEFILE     => 'CURLOPT_COOKIEFILE',
+        CURLOPT_COOKIEJAR      => 'CURLOPT_COOKIEJAR',
+        CURLOPT_CUSTOMREQUEST  => 'CURLOPT_CUSTOMREQUEST',
+        CURLOPT_HEADER         => 'CURLOPT_HEADER',
+        CURLOPT_HTTPHEADER     => 'CURLOPT_HTTPHEADER',
+        CURLOPT_POSTFIELDS     => 'CURLOPT_POSTFIELDS',
+        CURLOPT_RETURNTRANSFER => 'CURLOPT_RETURNTRANSFER',
+        CURLOPT_SSLCERT        => 'CURLOPT_SSLCERT',
+        CURLOPT_SSLCERTPASSWD  => 'CURLOPT_SSLCERTPASSWD',
+        CURLOPT_SSLCERTTYPE    => 'CURLOPT_SSLCERTTYPE',
+        CURLOPT_SSLKEY         => 'CURLOPT_SSLKEY',
+        CURLOPT_URL            => 'CURLOPT_URL',
+    ];
 }
