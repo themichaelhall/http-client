@@ -1,5 +1,6 @@
 ## Unreleased
 - Added setOption method to CurlRequestHandler.
+- Changed required PHP version to >= 7.3.
 
 ## [1.3.0] - 2020-06-22
 - Added getClientCertificateType and setClientCertificateType methods to HttpClientRequest.

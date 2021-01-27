@@ -14,7 +14,7 @@
     }
   ],
   "require": {
-    "php": ">=7.1",
+    "php": ">=7.3",
     "ext-curl": "*",
     "ext-fileinfo": "*",
     "datatypes/datatypes": "^2.0"
