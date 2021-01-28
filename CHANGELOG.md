@@ -1,3 +1,5 @@
+## Unreleased
+
 ## [1.4.0] - 2021-01-28
 - Added setOption method to CurlRequestHandler.
 - Changed required PHP version to >= 7.3.
