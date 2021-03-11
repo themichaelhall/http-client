@@ -266,6 +266,7 @@ class HttpClientTest extends TestCase
     public function testWithUnsafeOverriddenCurlOptionWithWarningSuppressed()
     {
         $curlRequestHandler = new CurlRequestHandler();
+        /** @noinspection PhpUsageOfSilenceOperatorInspection */
         @$curlRequestHandler->setOption(CURLOPT_URL, 'http://foobar.com/');
 
         $client = new HttpClient($curlRequestHandler);
