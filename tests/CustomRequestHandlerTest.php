@@ -94,7 +94,7 @@ class CustomRequestHandlerTest extends TestCase
 
         self::assertSame(200, $response->getHttpCode());
         self::assertSame('POST', $jsonContent['method']);
-        self::assertSame(['Foo' => 'Hello World!'], $jsonContent['files']);
+        self::assertSame('Hello World!', trim($jsonContent['files']['Foo']));
         self::assertSame(['Bar' => 'Baz'], $jsonContent['form']);
         self::assertStringStartsWith('multipart/form-data', $jsonContent['headers']['Content-Type']);
         self::assertTrue($response->isSuccessful());
