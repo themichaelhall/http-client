@@ -1,9 +1,11 @@
 <?php
+
 /**
  * This file is a part of the http-client package.
  *
  * Read more at https://github.com/themichaelhall/http-client
  */
+
 declare(strict_types=1);
 
 namespace MichaelHall\HttpClient\RequestHandlers;
