@@ -13,7 +13,7 @@ use MichaelHall\HttpClient\RequestHandlers\RequestHandlerInterface;
 /**
  * A custom request handler.
  *
- * A very rough emulation of some of the functionality from https://httpbin.org/.
+ * A very rough emulation of some functionality from https://httpbin.org/.
  */
 class CustomRequestHandler implements RequestHandlerInterface
 {

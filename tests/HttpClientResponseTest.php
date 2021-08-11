@@ -85,7 +85,7 @@ class HttpClientResponseTest extends TestCase
      */
     public function testAddHeader()
     {
-        $response = $response = new HttpClientResponse();
+        $response = new HttpClientResponse();
         $response->addHeader('X-Test-Foo: Foo Header');
         $response->addHeader('X-Test-Bar: Bar Header');
 
