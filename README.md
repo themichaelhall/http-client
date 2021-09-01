@@ -27,7 +27,7 @@ $ composer require michaelhall/http-client
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-use DataTypes\Url;
+use DataTypes\Net\Url;
 use MichaelHall\HttpClient\HttpClient;
 use MichaelHall\HttpClient\HttpClientRequest;
 
@@ -58,8 +58,8 @@ foreach ($response->getHeaders() as $header) {
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-use DataTypes\FilePath;
-use DataTypes\Url;
+use DataTypes\Net\Url;
+use DataTypes\System\FilePath;
 use MichaelHall\HttpClient\HttpClientRequest;
 
 $url = Url::parse('https://example.com/');
@@ -92,7 +92,7 @@ A custom/fake request handler may be used and injected in the ```HttpClient``` c
 ```php
 <?php
 
-use DataTypes\Url;
+use DataTypes\Net\Url;
 use MichaelHall\HttpClient\HttpClient;
 use MichaelHall\HttpClient\HttpClientRequest;
 use MichaelHall\HttpClient\HttpClientRequestInterface;

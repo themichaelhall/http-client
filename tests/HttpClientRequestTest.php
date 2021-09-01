@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace MichaelHall\HttpClient\Tests;
 
-use DataTypes\FilePath;
-use DataTypes\Url;
+use DataTypes\Net\Url;
+use DataTypes\System\FilePath;
 use MichaelHall\HttpClient\HttpClientRequest;
 use PHPUnit\Framework\TestCase;
 

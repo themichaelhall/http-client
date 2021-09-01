@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace MichaelHall\HttpClient\Tests;
 
 use CURLFile;
-use DataTypes\FilePath;
-use DataTypes\Url;
+use DataTypes\Net\Url;
+use DataTypes\System\FilePath;
 use MichaelHall\HttpClient\HttpClient;
 use MichaelHall\HttpClient\HttpClientRequest;
 use MichaelHall\HttpClient\RequestHandlers\CurlRequestHandler;

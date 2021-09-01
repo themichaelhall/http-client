@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace MichaelHall\HttpClient\Tests\TestFiles;
 
-use DataTypes\Interfaces\FilePathInterface;
+use DataTypes\System\FilePathInterface;
 use MichaelHall\HttpClient\HttpClientRequestInterface;
 use MichaelHall\HttpClient\HttpClientResponse;
 use MichaelHall\HttpClient\HttpClientResponseInterface;

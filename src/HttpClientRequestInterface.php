@@ -10,8 +10,8 @@ declare(strict_types=1);
 
 namespace MichaelHall\HttpClient;
 
-use DataTypes\Interfaces\FilePathInterface;
-use DataTypes\Interfaces\UrlInterface;
+use DataTypes\Net\UrlInterface;
+use DataTypes\System\FilePathInterface;
 
 /**
  * HTTP client request interface.

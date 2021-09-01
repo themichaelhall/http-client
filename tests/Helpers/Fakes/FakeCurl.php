@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace MichaelHall\HttpClient\Tests\Helpers\Fakes {
 
-    use DataTypes\Url;
+    use DataTypes\Net\Url;
 
     /**
      * Helper class for faking curl_* methods.

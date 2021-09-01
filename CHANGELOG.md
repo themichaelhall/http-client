@@ -1,4 +1,5 @@
-## Unreleased
+## [1.5.0] - 2021-09-01
+- Changed required datatypes version to 2.4.
 
 ## [1.4.0] - 2021-01-28
 - Added setOption method to CurlRequestHandler.
@@ -19,6 +20,7 @@
 ## 1.0.0 - 2019-01-24
 - First stable revision.
 
+[1.5.0]: https://github.com/themichaelhall/http-client/compare/v1.4.0...v1.5.0
 [1.4.0]: https://github.com/themichaelhall/http-client/compare/v1.3.0...v1.4.0
 [1.3.0]: https://github.com/themichaelhall/http-client/compare/v1.2.0...v1.3.0
 [1.2.0]: https://github.com/themichaelhall/http-client/compare/v1.1.0...v1.2.0
