@@ -1,5 +1,6 @@
 ## Unreleased
 - Changed required PHP version to >= 8.0.
+- Changed required datatypes version to 3.0.
 
 ## [1.5.0] - 2021-09-01
 - Changed required datatypes version to 2.4.
