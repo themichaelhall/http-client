@@ -10,7 +10,7 @@ A simple HTTP client.
 
 ## Requirements
 
-- PHP >= 7.3
+- PHP >= 8.0
 
 ## Install with Composer
 
