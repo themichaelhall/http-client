@@ -42,9 +42,9 @@ namespace MichaelHall\HttpClient\Tests\Helpers\Fakes {
          *
          * This method returns a response with content from a fake server.
          *
-         * @return string|bool The result or false if request failed.
+         * @return bool|string The result or false if request failed.
          */
-        public static function exec()
+        public static function exec(): bool|string
         {
             $url = Url::parse(self::$options[CURLOPT_URL]);
 
@@ -110,7 +110,7 @@ namespace MichaelHall\HttpClient\Tests\Helpers\Fakes {
          *
          * @return bool Always true.
          */
-        public static function setOption(int $option, $value): bool
+        public static function setOption(int $option, mixed $value): bool
         {
             self::$options[$option] = $value;
 
@@ -124,7 +124,7 @@ namespace MichaelHall\HttpClient\Tests\Helpers\Fakes {
          *
          * @return mixed The option value or null.
          */
-        public static function getOption(int $option)
+        public static function getOption(int $option): mixed
         {
             return self::$options[$option] ?? null;
         }
@@ -142,34 +142,35 @@ namespace MichaelHall\HttpClient\Tests\Helpers\Fakes {
         /**
          * @var bool True if fake curl is enabled, false otherwise.
          */
-        private static $isEnabled = false;
+        private static bool $isEnabled = false;
 
         /**
          * @var array The options.
          */
-        private static $options = [];
+        private static array $options = [];
 
         /**
          * @var string The last error.
          */
-        private static $error = '';
+        private static string $error = '';
     }
 }
 
 namespace MichaelHall\HttpClient\RequestHandlers {
 
+    use CurlHandle;
     use MichaelHall\HttpClient\Tests\Helpers\Fakes\FakeCurl;
 
     /**
      * Fakes the curl_setopt method.
      *
-     * @param mixed $handle The handle.
-     * @param int   $option The option.
-     * @param mixed $value  The option value.
+     * @param CurlHandle $handle The handle.
+     * @param int        $option The option.
+     * @param mixed      $value  The option value.
      *
      * @return bool True on success and false on failure.
      */
-    function curl_setopt($handle, int $option, $value): bool
+    function curl_setopt(CurlHandle $handle, int $option, mixed $value): bool
     {
         if (FakeCurl::isEnabled()) {
             return FakeCurl::setOption($option, $value);
@@ -181,11 +182,11 @@ namespace MichaelHall\HttpClient\RequestHandlers {
     /**
      * Fakes the curl_exec method.
      *
-     * @param mixed $handle The handle.
+     * @param CurlHandle $handle The handle.
      *
-     * @return string|bool The result or false if request failed.
+     * @return bool|string The result or false if request failed.
      */
-    function curl_exec($handle)
+    function curl_exec(CurlHandle $handle): bool|string
     {
         if (FakeCurl::isEnabled()) {
             return FakeCurl::exec();
@@ -197,11 +198,11 @@ namespace MichaelHall\HttpClient\RequestHandlers {
     /**
      * Fakes the curl_error method.
      *
-     * @param mixed $handle The handle.
+     * @param CurlHandle $handle The handle.
      *
      * @return string The error message.
      */
-    function curl_error($handle): string
+    function curl_error(CurlHandle $handle): string
     {
         if (FakeCurl::isEnabled()) {
             return FakeCurl::getError();

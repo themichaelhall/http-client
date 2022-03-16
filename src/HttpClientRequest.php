@@ -290,57 +290,57 @@ class HttpClientRequest implements HttpClientRequestInterface
     }
 
     /**
-     * @var UrlInterface My url.
+     * @var UrlInterface The url.
      */
-    private $url;
+    private UrlInterface $url;
 
     /**
-     * @var string My method.
+     * @var string The method.
      */
-    private $method;
+    private string $method;
 
     /**
-     * @var string[] My headers.
+     * @var string[] The headers.
      */
-    private $headers;
+    private array $headers;
 
     /**
-     * @var array My post fields.
+     * @var array The post fields.
      */
-    private $postFields;
+    private array $postFields;
 
     /**
-     * @var array My files.
+     * @var array The files.
      */
-    private $files;
+    private array $files;
 
     /**
-     * @var string My raw content.
+     * @var string The raw content.
      */
-    private $rawContent;
+    private string $rawContent;
 
     /**
-     * @var FilePathInterface|null My CA certificate path.
+     * @var FilePathInterface|null The CA certificate path.
      */
-    private $caCertificate;
+    private ?FilePathInterface $caCertificate;
 
     /**
-     * @var FilePathInterface|null My client certificate path.
+     * @var FilePathInterface|null The client certificate path.
      */
-    private $clientCertificate;
+    private ?FilePathInterface $clientCertificate;
 
     /**
-     * @var string|null My client certificate password.
+     * @var string|null The client certificate password.
      */
-    private $clientCertificatePassword;
+    private ?string $clientCertificatePassword;
 
     /**
-     * @var string|null My client certificate type.
+     * @var string|null The client certificate type.
      */
-    private $clientCertificateType;
+    private ?string $clientCertificateType;
 
     /**
-     * @var FilePathInterface|null My client key.
+     * @var FilePathInterface|null The client key.
      */
-    private $clientKey;
+    private ?FilePathInterface $clientKey;
 }

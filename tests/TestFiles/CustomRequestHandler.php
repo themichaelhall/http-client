@@ -124,7 +124,7 @@ class CustomRequestHandler implements RequestHandlerInterface
     }
 
     /**
-     * @var array My cookies.
+     * @var array The cookies.
      */
-    private $cookies;
+    private array $cookies;
 }

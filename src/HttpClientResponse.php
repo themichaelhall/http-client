@@ -93,17 +93,17 @@ class HttpClientResponse implements HttpClientResponseInterface
     }
 
     /**
-     * @var int My http code.
+     * @var int The http code.
      */
-    private $httpCode;
+    private int $httpCode;
 
     /**
-     * @var string My content.
+     * @var string The content.
      */
-    private $content;
+    private string $content;
 
     /**
-     * @var string[] My headers.
+     * @var string[] The headers.
      */
-    private $headers;
+    private array $headers;
 }

@@ -47,7 +47,7 @@ class HttpClient implements HttpClientInterface
     }
 
     /**
-     * @var RequestHandlerInterface My request handler.
+     * @var RequestHandlerInterface The request handler.
      */
-    private $requestHandler;
+    private RequestHandlerInterface $requestHandler;
 }
