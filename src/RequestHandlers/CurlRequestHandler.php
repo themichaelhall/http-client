@@ -83,8 +83,10 @@ class CurlRequestHandler implements RequestHandlerInterface
      *
      * @param int   $option The CURLOPT_XXX option.
      * @param mixed $value  The option value.
+     *
+     * @return $this
      */
-    public function setOption(int $option, mixed $value): void
+    public function setOption(int $option, mixed $value): self
     {
         $unsafeOption = self::UNSAFE_CURL_OPTIONS_OVERRIDE[$option] ?? null;
         if ($unsafeOption !== null) {
@@ -92,6 +94,8 @@ class CurlRequestHandler implements RequestHandlerInterface
         }
 
         $this->options[$option] = $value;
+
+        return $this;
     }
 
     /**

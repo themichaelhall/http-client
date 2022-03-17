@@ -26,8 +26,10 @@ interface HttpClientRequestInterface
      * @since 1.0.0
      *
      * @param string $header The header.
+     *
+     * @return $this
      */
-    public function addHeader(string $header): void;
+    public function addHeader(string $header): self;
 
     /**
      * Returns the certificate authority (CA) certificate path or null if not set.
@@ -134,8 +136,10 @@ interface HttpClientRequestInterface
      * @since 1.1.0
      *
      * @param FilePathInterface $caCertificate The certificate authority (CA) certificate path.
+     *
+     * @return $this
      */
-    public function setCACertificate(FilePathInterface $caCertificate): void;
+    public function setCACertificate(FilePathInterface $caCertificate): self;
 
     /**
      * Sets the client certificate path.
@@ -143,8 +147,10 @@ interface HttpClientRequestInterface
      * @since 1.1.0
      *
      * @param FilePathInterface $clientCertificate The client certificate path.
+     *
+     * @return $this
      */
-    public function setClientCertificate(FilePathInterface $clientCertificate): void;
+    public function setClientCertificate(FilePathInterface $clientCertificate): self;
 
     /**
      * Sets the client certificate password.
@@ -152,8 +158,10 @@ interface HttpClientRequestInterface
      * @since 1.3.0
      *
      * @param string $clientCertificatePassword The client certificate password.
+     *
+     * @return $this
      */
-    public function setClientCertificatePassword(string $clientCertificatePassword): void;
+    public function setClientCertificatePassword(string $clientCertificatePassword): self;
 
     /**
      * Sets the client certificate type.
@@ -161,8 +169,10 @@ interface HttpClientRequestInterface
      * @since 1.3.0
      *
      * @param string $clientCertificateType
+     *
+     * @return $this
      */
-    public function setClientCertificateType(string $clientCertificateType): void;
+    public function setClientCertificateType(string $clientCertificateType): self;
 
     /**
      * Sets the client key path.
@@ -170,8 +180,10 @@ interface HttpClientRequestInterface
      * @since 1.1.0
      *
      * @param FilePathInterface $clientKey The client key path.
+     *
+     * @return $this
      */
-    public function setClientKey(FilePathInterface $clientKey): void;
+    public function setClientKey(FilePathInterface $clientKey): self;
 
     /**
      * Sets a file to upload.
@@ -180,8 +192,10 @@ interface HttpClientRequestInterface
      *
      * @param string            $name     The name.
      * @param FilePathInterface $filePath The file path.
+     *
+     * @return $this
      */
-    public function setFile(string $name, FilePathInterface $filePath): void;
+    public function setFile(string $name, FilePathInterface $filePath): self;
 
     /**
      * Sets a post field.
@@ -190,8 +204,10 @@ interface HttpClientRequestInterface
      *
      * @param string $name  The name.
      * @param string $value The value.
+     *
+     * @return $this
      */
-    public function setPostField(string $name, string $value): void;
+    public function setPostField(string $name, string $value): self;
 
     /**
      * Sets the raw content.
@@ -199,6 +215,8 @@ interface HttpClientRequestInterface
      * @since 1.0.0
      *
      * @param string $rawContent The raw content.
+     *
+     * @return $this
      */
-    public function setRawContent(string $rawContent): void;
+    public function setRawContent(string $rawContent): self;
 }

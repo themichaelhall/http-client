@@ -38,10 +38,14 @@ class HttpClientResponse implements HttpClientResponseInterface
      * @since 1.0.0
      *
      * @param string $header The header.
+     *
+     * @return $this
      */
-    public function addHeader(string $header): void
+    public function addHeader(string $header): self
     {
         $this->headers[] = $header;
+
+        return $this;
     }
 
     /**

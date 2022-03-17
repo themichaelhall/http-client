@@ -1,4 +1,5 @@
 ## Unreleased
+- Added fluent interface to setters in HttpClientRequest, HttpClientResponse and CurlRequestHandler.
 - Changed required PHP version to >= 8.0.
 - Changed required datatypes version to 3.0.
 

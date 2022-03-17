@@ -227,4 +227,32 @@ class HttpClientRequestTest extends TestCase
 
         self::assertSame(DIRECTORY_SEPARATOR . 'baz.pem', $request->getClientKey()->__toString());
     }
+
+    /**
+     * Test chained setters.
+     */
+    public function testChainedSetters()
+    {
+        $filePath = FilePath::parse('/tmp/file1');
+
+        $request = (new HttpClientRequest(Url::parse('https://example.com/')))
+            ->addHeader('X-Test-Foo: Foo Header')
+            ->setCACertificate(FilePath::parse('/foo.pem'))
+            ->setClientCertificate(FilePath::parse('/bar.pem'))
+            ->setClientCertificatePassword('FooBar')
+            ->setClientCertificateType('P12')
+            ->setClientKey(FilePath::parse('/baz.pem'))
+            ->setFile('Foo', $filePath)
+            ->setPostField('Bar', 'Baz');
+
+        self::assertSame('https://example.com/', $request->getUrl()->__toString());
+        self::assertSame(['X-Test-Foo: Foo Header'], $request->getHeaders());
+        self::assertSame(DIRECTORY_SEPARATOR . 'foo.pem', $request->getCACertificate()->__toString());
+        self::assertSame(DIRECTORY_SEPARATOR . 'bar.pem', $request->getClientCertificate()->__toString());
+        self::assertSame('FooBar', $request->getClientCertificatePassword());
+        self::assertSame('P12', $request->getClientCertificateType());
+        self::assertSame(DIRECTORY_SEPARATOR . 'baz.pem', $request->getClientKey()->__toString());
+        self::assertSame(['Foo' => $filePath], $request->getFiles());
+        self::assertSame(['Bar' => 'Baz'], $request->getPostFields());
+    }
 }

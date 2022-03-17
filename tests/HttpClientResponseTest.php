@@ -91,4 +91,16 @@ class HttpClientResponseTest extends TestCase
 
         self::assertSame(['X-Test-Foo: Foo Header', 'X-Test-Bar: Bar Header'], $response->getHeaders());
     }
+
+    /**
+     * Test chained setters.
+     */
+    public function testChainedSetters()
+    {
+        $response = (new HttpClientResponse())
+            ->addHeader('X-Test-Foo: Foo Header')
+            ->addHeader('X-Test-Bar: Bar Header');
+
+        self::assertSame(['X-Test-Foo: Foo Header', 'X-Test-Bar: Bar Header'], $response->getHeaders());
+    }
 }
