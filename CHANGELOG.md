@@ -1,3 +1,5 @@
+## Unreleased
+
 ## [2.0.0] - 2022-03-18
 - Added fluent interface to setters in HttpClientRequest, HttpClientResponse and CurlRequestHandler.
 - Changed required PHP version to >= 8.0.
