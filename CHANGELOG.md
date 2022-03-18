@@ -1,4 +1,4 @@
-## Unreleased
+## [2.0.0] - 2022-03-18
 - Added fluent interface to setters in HttpClientRequest, HttpClientResponse and CurlRequestHandler.
 - Changed required PHP version to >= 8.0.
 - Changed required datatypes version to 3.0.
@@ -25,6 +25,7 @@
 ## 1.0.0 - 2019-01-24
 - First stable revision.
 
+[2.0.0]: https://github.com/themichaelhall/http-client/compare/v1.5.0...v2.0.0
 [1.5.0]: https://github.com/themichaelhall/http-client/compare/v1.4.0...v1.5.0
 [1.4.0]: https://github.com/themichaelhall/http-client/compare/v1.3.0...v1.4.0
 [1.3.0]: https://github.com/themichaelhall/http-client/compare/v1.2.0...v1.3.0
