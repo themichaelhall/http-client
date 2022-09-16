@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 namespace MichaelHall\HttpClient\Tests\Helpers\Fakes {
-
     use DataTypes\Net\Url;
 
     /**
@@ -157,7 +156,6 @@ namespace MichaelHall\HttpClient\Tests\Helpers\Fakes {
 }
 
 namespace MichaelHall\HttpClient\RequestHandlers {
-
     use CurlHandle;
     use MichaelHall\HttpClient\Tests\Helpers\Fakes\FakeCurl;
 
