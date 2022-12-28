@@ -65,13 +65,19 @@ namespace MichaelHall\HttpClient\Tests\Helpers\Fakes {
                 case '/continue':
                     $responseCode = 100;
                     $responseHeaders = [];
-                    $responseText = 'Hello World!';
+                    $responseText = 'Continue';
+                    break;
+
+                case '/early-hints':
+                    $responseCode = 103;
+                    $responseHeaders = [];
+                    $responseText = 'Early hints';
                     break;
 
                 case '/response-header':
                     $responseCode = 200;
                     $responseHeaders = [urldecode($url->getQueryString())];
-                    $responseText = 'Hello World!';
+                    $responseText = 'Response header';
                     break;
 
                 default:
@@ -85,6 +91,12 @@ namespace MichaelHall\HttpClient\Tests\Helpers\Fakes {
 
             if ($responseCode === 100) {
                 $result[] = 'HTTP/1.1 100 Continue';
+                $result[] = '';
+
+                $responseCode = 200;
+            } elseif ($responseCode === 103) {
+                $result[] = 'HTTP/1.1 103 Early Hints';
+                $result[] = 'link: <https://example.com/>; rel=preconnect';
                 $result[] = '';
 
                 $responseCode = 200;

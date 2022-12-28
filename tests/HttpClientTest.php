@@ -52,9 +52,30 @@ class HttpClientTest extends TestCase
         self::assertSame(200, $response->getHttpCode());
         self::assertTrue($response->isSuccessful());
         self::assertSame([], $response->getHeaders());
-        self::assertSame('Hello World!', $response->getContent());
+        self::assertSame('Continue', $response->getContent());
 
         self::assertSame('https://example.com/continue', FakeCurl::getOption(CURLOPT_URL));
+        self::assertSame('GET', FakeCurl::getOption(CURLOPT_CUSTOMREQUEST));
+        self::assertSame(['X-Test-Header: Foo Bar'], FakeCurl::getOption(CURLOPT_HTTPHEADER));
+        self::assertNull(FakeCurl::getOption(CURLOPT_POSTFIELDS));
+    }
+
+    /**
+     * Test fetching a page with 103 Early Hints response.
+     */
+    public function testEarlyHintsResponse()
+    {
+        $client = new HttpClient();
+        $request = new HttpClientRequest(Url::parse('https://example.com/early-hints'));
+        $request->addHeader('X-Test-Header: Foo Bar');
+        $response = $client->send($request);
+
+        self::assertSame(200, $response->getHttpCode());
+        self::assertTrue($response->isSuccessful());
+        self::assertSame([], $response->getHeaders());
+        self::assertSame('Early hints', $response->getContent());
+
+        self::assertSame('https://example.com/early-hints', FakeCurl::getOption(CURLOPT_URL));
         self::assertSame('GET', FakeCurl::getOption(CURLOPT_CUSTOMREQUEST));
         self::assertSame(['X-Test-Header: Foo Bar'], FakeCurl::getOption(CURLOPT_HTTPHEADER));
         self::assertNull(FakeCurl::getOption(CURLOPT_POSTFIELDS));
@@ -162,7 +183,7 @@ class HttpClientTest extends TestCase
         self::assertSame(200, $response->getHttpCode());
         self::assertTrue($response->isSuccessful());
         self::assertSame(['X-Test-Header: Foo'], $response->getHeaders());
-        self::assertSame('Hello World!', $response->getContent());
+        self::assertSame('Response header', $response->getContent());
 
         self::assertSame('https://example.com/response-header?X-Test-Header%3A+Foo', FakeCurl::getOption(CURLOPT_URL));
         self::assertSame('GET', FakeCurl::getOption(CURLOPT_CUSTOMREQUEST));

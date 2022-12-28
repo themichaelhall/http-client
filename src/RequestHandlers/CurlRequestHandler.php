@@ -188,7 +188,7 @@ class CurlRequestHandler implements RequestHandlerInterface
         $statusLine = array_shift($headers);
         $statusLineParts = explode(' ', $statusLine);
         $httpCode = intval($statusLineParts[1]);
-        if ($httpCode === 100) {
+        if (in_array($httpCode, [100, 103])) {
             return $this->parseResult($resultParts[1]);
         }
 

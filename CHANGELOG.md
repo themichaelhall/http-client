@@ -1,4 +1,5 @@
 ## Unreleased
+- Added support for HTTP Status code 103.
 
 ## [2.0.0] - 2022-03-18
 - Added fluent interface to setters in HttpClientRequest, HttpClientResponse and CurlRequestHandler.
