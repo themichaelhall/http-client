@@ -1,7 +1,6 @@
 # Http Client
 
-[![Tests](https://github.com/themichaelhall/http-client/workflows/Tests/badge.svg?branch=master)](https://github.com/themichaelhall/http-client/actions)
-[![StyleCI](https://styleci.io/repos/166465522/shield?style=flat&branch=master)](https://styleci.io/repos/166465522)
+[![Tests](https://github.com/themichaelhall/http-client/actions/workflows/tests.yml/badge.svg?branch=master)](https://github.com/themichaelhall/http-client/actions)
 [![License](https://poser.pugx.org/michaelhall/http-client/license)](https://packagist.org/packages/michaelhall/http-client)
 [![Latest Stable Version](https://poser.pugx.org/michaelhall/http-client/v/stable)](https://packagist.org/packages/michaelhall/http-client)
 [![Total Downloads](https://poser.pugx.org/michaelhall/http-client/downloads)](https://packagist.org/packages/michaelhall/http-client)
