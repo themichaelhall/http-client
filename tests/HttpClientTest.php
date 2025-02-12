@@ -274,11 +274,16 @@ class HttpClientTest extends TestCase
      */
     public function testWithUnsafeOverriddenCurlOption()
     {
-        self::expectWarning();
-        self::expectWarningMessage('Option "CURLOPT_URL" is used internally by CurlRequestHandler. Setting it manually may lead to unexpected results.');
+        $errorMessage = null;
+        set_error_handler(function ($errno, $errstr) use (&$errorMessage) {
+            $errorMessage = $errstr;
+            restore_error_handler();
+        }, E_USER_WARNING);
 
         $curlRequestHandler = new CurlRequestHandler();
         $curlRequestHandler->setOption(CURLOPT_URL, 'http://foobar.com/');
+
+        self::assertSame('Option "CURLOPT_URL" is used internally by CurlRequestHandler. Setting it manually may lead to unexpected results.', $errorMessage);
     }
 
     /**
